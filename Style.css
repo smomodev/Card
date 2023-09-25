@@ -1,1 +1,38 @@
+.card-flipper {
+  perspective: 1000px;
+  width: 300px;
+  height: 400px;
+  margin: 0 auto;
+}
 
+.card {
+  position: absolute;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease-in-out;
+}
+
+.card.front {
+  transform: rotateY(0deg);
+}
+
+.card.back {
+  transform: rotateY(180deg);
+}
+
+.card-flipper:hover .card.front {
+  transform: rotateY(-180deg);
+}
+
+.card-flipper:hover .card.back {
+  transform: rotateY(0deg);
+}
+
+.card h2 {
+  text-align: center;
+}
+
+.card p {
+  margin: 0 auto;
+  width: 200px;
+}
