@@ -1,22 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Card Flipper</title>
-  <link rel="stylesheet" href="Style.css">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #fff;
+    }
+
+    .card-flipper {
+      width: 200px;
+      height: 300px;
+      margin: 0 auto;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+
+    .card-flipper .card {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      backface-visibility: hidden;
+      transition: transform 0.5s ease-in-out;
+    }
+
+    .card-flipper .card.front {
+      transform: rotateY(0deg);
+      background-color: linear-gradient(to right, #000000, #ffffff);
+    }
+
+    .card-flipper .card.back {
+      transform: rotateY(180deg);
+      background-color: linear-gradient(to right, #ffffff, #000000);
+    }
+
+    .card-flipper .card .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .card-flipper:hover .card.front {
+      transform: rotateY(-180deg);
+    }
+
+    .card-flipper:hover .card.back {
+      transform: rotateY(0deg);
+    }
+
+    @media (max-width: 480px) {
+      .card-flipper {
+        width: 100%;
+        height: 200px;
+      }
+    }
+
+    .card-flipper .card {
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+  </style>
 </head>
 <body>
   <div class="card-flipper">
     <div class="card front">
-      <h2>Front of Card</h2>
-      <p>This is the front of the card.</p>
+      <div class="content">
+        <h1>Front</h1>
+        <p>This is the front of the card.</p>
+      </div>
     </div>
     <div class="card back">
-      <h2>Back of Card</h2>
-      <p>This is the back of the card.</p>
+      <div class="content">
+        <h1>Back</h1>
+        <p>This is the back of the card.</p>
+      </div>
     </div>
   </div>
-  <script src="main.js"></script>
+
+  <script>
+    var cardFlipper = document.querySelector('.card-flipper');
+
+    cardFlipper.addEventListener('mouseover', function() {
+      this.classList.add('flip');
+    });
+
+    cardFlipper.addEventListener('mouseout', function() {
+      this.classList.remove('flip');
+    });
+  </script>
 </body>
 </html>
